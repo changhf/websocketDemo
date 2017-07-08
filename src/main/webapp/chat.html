@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="./resources/jquery.js"></script>
+<script type="text/javascript">
+	var ws = null;
+	function connect() {
+		var target = 'ws://localhost:8080/websocketDemo/chat';
+		if ('WebSocket' in window) {
+			ws = new WebSocket(target);
+		} else if ('MozWebSocket' in window) {
+			ws = new MozWebSocket(target);
+		} else {
+			alert('WebSocket is not supported by this browser.');
+			return;
+		}
+		ws.onopen = function() {
+			var log = $('#chatlog').html()+'<br>';
+			$('#chatlog').html(log + 'connection established...');
+		}
+		ws.onmessage = function(event) {
+			var log = $('#chatlog').html()+'<br>';
+			$('#chatlog').html(log + event.data);
+		}
+		ws.onclose = function() {
+			var log = $('#chatlog').html()+'<br>';
+			$('#chatlog').html(log + 'connection closed...');
+		}
+	}
+	function disconnect(){
+		if(ws!=null){
+			ws.close();
+			ws = null;
+		}
+		
+	}
+	function send(){
+		var msg = $('#tt').val();
+		if(ws!=null){
+			ws.send(msg);
+			$('#tt').val('');
+		}else{
+			var log = $('#chatlog').html()+'<br>';
+			$('#chatlog').html(log + 'connection not connected...');
+		}
+	}
+</script>
+</head>
+<body>
+	<button id='connect' name='connect' onclick='connect();'>connect</button>
+	<button id='disconnect' name='disconnect' onclick='disconnect();'>disconnect</button>
+	<br>
+	<textarea id='tt' rows="3" cols="40"></textarea>
+	<button id='send' name='send' onclick='send();'>send</button>
+	<hr>
+	<span id='chatlog'></span>
+</body>
+</html>
