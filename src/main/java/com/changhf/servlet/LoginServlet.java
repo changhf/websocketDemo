@@ -14,7 +14,9 @@ public class LoginServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("utf-8");
 		String username = req.getParameter("username");
-		System.out.println(username);
+		req.getSession().setAttribute("username", username);
+		resp.sendRedirect("chatPage.jsp");
 	}
 }
