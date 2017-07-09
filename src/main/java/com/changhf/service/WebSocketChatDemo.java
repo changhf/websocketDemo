@@ -1,7 +1,6 @@
-package com.changhf.websocketDemo;
+package com.changhf.service;
 
 import java.io.IOException;
-import java.util.Set;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
