@@ -27,7 +27,17 @@
 			$('#content').append('connection closed...');
 		}
 		ws.onmessage=function(event){
-			$('#content').append(event.data+'<br>');
+			eval("var msg = "+event.data+";");
+			console.info(msg);
+			if(undefined!=msg.msg){
+				$('#content').append(msg.msg+'<br>');	
+			}
+			if(undefined!=msg.to){
+				$('#userlist').html('');
+				$(msg.to).each(function(){
+					$('#userlist').append(this+'<br>');	
+				});
+			}
 		}
 	}
 	function sendMsg(){

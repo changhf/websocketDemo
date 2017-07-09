@@ -15,8 +15,6 @@ import javax.websocket.server.ServerEndpoint;
  */
 @ServerEndpoint("/chat")
 public class WebSocketChatDemo {
-	// Set<Session> session_list = null;
-
 	@OnOpen
 	public void open(Session session) {
 		System.out.println("Guest" + session.getId() + ": connected");
