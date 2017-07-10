@@ -28,22 +28,41 @@
 		}
 		ws.onmessage=function(event){
 			eval("var msg = "+event.data+";");
-			console.info(msg);
 			if(undefined!=msg.msg){
 				$('#content').append(msg.msg+'<br>');	
 			}
 			if(undefined!=msg.to){
 				$('#userlist').html('');
 				$(msg.to).each(function(){
-					$('#userlist').append(this+'<br>');	
+					$('#userlist').append("<input type=radio name='username' value='"+this+"'/>"+this+'<br>');	
 				});
 			}
 		}
 	}
 	function sendMsg(){
 		var sendMsg = $('#inputArea').val();
-		ws.send(sendMsg);
-		$('#inputArea').val('');
+		
+		var to = $('#userlist :checked');
+		
+		var userSize = to.size();
+		var obj=null;
+		if(userSize==0){
+			obj = {
+					msgData:sendMsg,
+					msgType:1
+			}
+		}else if(userSize==1){
+			var to_user = to.val();
+			obj={
+				to:to_user,
+				msgData:sendMsg,
+				msgType:2
+			}
+		}
+		var str=JSON.stringify(obj);
+		console.info(str);
+		ws.send(str);//js对象转换为json对象
+		$('#inputArea').val(''); 
 	}
 	</script>
 </head>

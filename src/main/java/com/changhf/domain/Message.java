@@ -5,7 +5,7 @@ import java.util.List;
 public class Message {
 	private String msg;
 	private List<String> to;
-	private int msgType;
+//	private int msgType;
 
 	public String getMsg() {
 		return msg;
@@ -14,7 +14,9 @@ public class Message {
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
-
+	public void setMsg(String username,String msg) {
+		this.msg = username+":"+msg;
+	}
 	public List<String> getTo() {
 		return to;
 	}
@@ -23,11 +25,11 @@ public class Message {
 		this.to = to;
 	}
 
-	public int getMsgType() {
-		return msgType;
-	}
-
-	public void setMsgType(int msgType) {
-		this.msgType = msgType;
-	}
+//	public int getMsgType() {
+//		return msgType;
+//	}
+//
+//	public void setMsgType(int msgType) {
+//		this.msgType = msgType;
+//	}
 }
