@@ -1,6 +1,7 @@
 package com.changhf.service;
 
 import java.io.IOException;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -51,7 +52,6 @@ public class MultiPersonChatServer {
 		usernames.remove(username);
 		// 用户退出通知
 		Message message = new Message();
-		// message.setMsgType(MessageTypeEnum.NOTICE.getCode());
 		message.setMsg(this.username + "离开了");
 		message.setTo(usernames);
 		broadcast(ss, JSON.toJSONString(message));
@@ -62,14 +62,14 @@ public class MultiPersonChatServer {
 		ContentData data = JSON.parseObject(msg, ContentData.class);
 		int msgType = data.getMsgType();
 		if (msgType == MessageTypeEnum.TEXT_MSG.getCode()) {
-			Session ss = sessionMap.get(data.getTo());
+			//单聊
+			Session to_session = sessionMap.get(data.getTo());
+			List<Session> ss = new ArrayList<Session>();
+			ss.add(to_session);
+			ss.add(sessionMap.get(username));
 			Message message = new Message();
-			message.setMsg(username, data.getMsgData());
-			try {
-				ss.getBasicRemote().sendText(JSON.toJSONString(message));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			message.setMsg("<font style='color:red;'>"+this.username+" "+LocalTime.now().withNano(0)+"<br>"+data.getMsgData()+"</font>");
+			broadcast(ss, JSON.toJSONString(message));
 		} else {
 			// 消息发送
 			Message message = new Message();

@@ -1,11 +1,11 @@
 package com.changhf.domain;
 
+import java.time.LocalTime;
 import java.util.List;
 
 public class Message {
 	private String msg;
 	private List<String> to;
-//	private int msgType;
 
 	public String getMsg() {
 		return msg;
@@ -15,7 +15,7 @@ public class Message {
 		this.msg = msg;
 	}
 	public void setMsg(String username,String msg) {
-		this.msg = username+":"+msg;
+		this.msg = username+" "+LocalTime.now().withNano(0)+"<br>"+msg;
 	}
 	public List<String> getTo() {
 		return to;
@@ -25,11 +25,4 @@ public class Message {
 		this.to = to;
 	}
 
-//	public int getMsgType() {
-//		return msgType;
-//	}
-//
-//	public void setMsgType(int msgType) {
-//		this.msgType = msgType;
-//	}
 }

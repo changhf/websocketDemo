@@ -27,7 +27,7 @@
 			$('#content').append('connection closed...');
 		}
 		ws.onmessage=function(event){
-			eval("var msg = "+event.data+";");
+			eval('var msg = '+event.data+';');
 			if(undefined!=msg.msg){
 				$('#content').append(msg.msg+'<br>');	
 			}
