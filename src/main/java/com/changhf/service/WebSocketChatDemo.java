@@ -9,7 +9,7 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 /**
- * @ServerEndpoint该注解相当于以前的Servlet，表示一个websocket服务
+ * @ServerEndpoint 该注解相当于以前的Servlet，表示一个websocket服务
  * @author changhf
  *
  */

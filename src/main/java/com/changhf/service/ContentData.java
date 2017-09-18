@@ -1,7 +1,5 @@
 package com.changhf.service;
 
-import java.util.List;
-
 public class ContentData {
 	private String to;
 	private String msgData;
