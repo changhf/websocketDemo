@@ -1,8 +1,8 @@
 *.iml
+.idea/
+target/
 .classpath
 .project
-.idea/
 .settings/
 .DS_Store
-target/
 */target/
