@@ -14,11 +14,13 @@ import javax.websocket.server.ServerEndpointConfig;
  */
 public class WebsocketServer implements ServerApplicationConfig {
 
+	@Override
 	public Set<Class<?>> getAnnotatedEndpointClasses(Set<Class<?>> scan) {
 		System.out.println("scan initializing.." + scan.size());
 		return scan;
 	}
 
+	@Override
 	public Set<ServerEndpointConfig> getEndpointConfigs(Set<Class<? extends Endpoint>> arg0) {
 		// TODO Auto-generated method stub
 		return null;

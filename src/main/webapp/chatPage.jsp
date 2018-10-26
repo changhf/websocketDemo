@@ -9,7 +9,7 @@
 <script type="text/javascript">
 	var ws = null;
 	var username = '${sessionScope.username}';
-	var target = 'ws://localhost:8080/websocketDemo/multichat?username='+username;
+	var target = 'ws://localhost:8080/multichat?username='+username;
 	
 	window.onload = function(){
 		if ('WebSocket' in window) {
