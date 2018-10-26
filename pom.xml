@@ -76,8 +76,6 @@
                     </systemProperties>
                 </configuration>
             </plugin>
-
         </plugins>
-
     </build>
 </project>
